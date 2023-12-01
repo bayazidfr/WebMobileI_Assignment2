@@ -9,21 +9,32 @@
 </head>
 
 <body>
-  <header>
-    <h1>Product Listing</h1>
-  </header>
-  <main>
-    <div id="filters">
-      <label for="categoryFilter">Filter by Category:</label>
-      <select id="categoryFilter"></select>
-      <label for="searchInput">Search:</label>
-      <input type="text" id="searchInput" placeholder="Enter keyword...">
+
+  <div class="container">
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <!-- Categories will be dynamically added here -->
+      </select>
     </div>
-    <div id="product-list"></div>
-    <div id="pagination"></div>
-  </main>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="script.js"></script>
+    <div class="product-container" id="product-container">
+      <!-- Product cards will be dynamically added here -->
+    </div>
+    <div class="pagination" id="pagination-container">
+      <!-- Pagination links will be dynamically added here -->
+    </div>
+  </div>
+
+  <div class="modal" id="productModal">
+    <div class="modal-content" id="modalContent">
+      <!-- Product details and gallery will be dynamically added here -->
+      <span class="close" onclick="closeModal()">&times;</span>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+
 </body>
 
 </html>
