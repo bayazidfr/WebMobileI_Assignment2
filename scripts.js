@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modalContent.innerHTML = `
       <h2>${product.title}</h2>
       <img src="${product.thumbnail}" alt="${product.title}" class="modal-thumbnail">
+      <p>Description: $${product.description}</p>
       <p>Price: $${product.price}</p>
       <p>Discount: ${product.discountPercentage}%</p>
       <p>Category: ${product.category}</p>
@@ -96,4 +97,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function closeModal() {
     productModal.style.display = "none";
+  }
+
+  function renderPagination(totalItems) {
+    // Clear pagination container before rendering
+    paginationContainer.innerHTML = "";
+
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const pageLink = document.createElement("a");
+      pageLink.textContent = i;
+      pageLink.href = "#";
+      pageLink.addEventListener("click", () => handlePaginationClick(i));
+
+      if (i === currentPage) {
+        pageLink.classList.add("active");
+      }
+
+      paginationContainer.appendChild(pageLink);
+    }
   }
