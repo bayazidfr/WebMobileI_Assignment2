@@ -66,3 +66,21 @@ document.addEventListener("DOMContentLoaded", function () {
       container.appendChild(card);
     });
   }
+
+  function openProductModal(product) {
+    modalContent.innerHTML = `
+      <h2>${product.title}</h2>
+      <img src="${product.thumbnail}" alt="${product.title}" class="modal-thumbnail">
+      <p>Price: $${product.price}</p>
+      <p>Discount: ${product.discountPercentage}%</p>
+      <p>Category: ${product.category}</p>
+      <p>Stock: ${product.stock}</p>
+      <p>Rating: ${product.rating}</p>
+      <p>Brand: ${product.brand}</p>
+      <!-- Add more details and gallery here as needed -->
+    `;
+
+    productModal.style.display = "flex";
+
+    document.addEventListener("click", closeModalOutsideClick);
+  }
