@@ -84,3 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("click", closeModalOutsideClick);
   }
+
+  function closeModalOutsideClick(event) {
+    // Check if the clicked element is outside the modal
+    if (!event.target.closest(".modal-content") && !event.target.closest(".product-card")) {
+      closeModal();
+      // Remove the event listener to avoid interference with other clicks
+      document.removeEventListener("click", closeModalOutsideClick);
+    }
+  }
+
+  function closeModal() {
+    productModal.style.display = "none";
+  }
