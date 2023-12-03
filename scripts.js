@@ -118,7 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
       paginationContainer.appendChild(pageLink);
     }
   }
-   function handlePaginationClick(pageNumber) {
+
+  function handlePaginationClick(pageNumber) {
     currentPage = pageNumber;
     fetchProducts();
   }
@@ -133,7 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Render pagination based on the total number of products
     renderPagination(productsToDisplay.length);
   }
-   function populateCategoryFilter(products) {
+
+  function populateCategoryFilter(products) {
     // Extract unique categories from products
     const categories = [...new Set(products.map(product => product.category))];
 
@@ -149,3 +151,24 @@ document.addEventListener("DOMContentLoaded", function () {
     categoryFilter.addEventListener("change", fetchProducts);
   }
 
+  function filterProducts(products) {
+    // Apply search filter
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredBySearch = products.filter(product =>
+      product.title.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm)
+    );
+
+    // Apply category filter
+    const selectedCategory = categoryFilter.value;
+    const filteredByCategory = selectedCategory
+      ? filteredBySearch.filter(product => product.category === selectedCategory)
+      : filteredBySearch;
+
+    return filteredByCategory;
+  }
+
+  // Add event listener for search input change
+  searchInput.addEventListener("input", fetchProducts);
+});
