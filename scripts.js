@@ -133,4 +133,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Render pagination based on the total number of products
     renderPagination(productsToDisplay.length);
   }
+   function populateCategoryFilter(products) {
+    // Extract unique categories from products
+    const categories = [...new Set(products.map(product => product.category))];
+
+    // Add options to the category filter select box
+    categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      categoryFilter.appendChild(option);
+    });
+
+    // Add event listener for category filter change
+    categoryFilter.addEventListener("change", fetchProducts);
+  }
 
