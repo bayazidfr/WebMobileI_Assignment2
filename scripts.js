@@ -118,3 +118,19 @@ document.addEventListener("DOMContentLoaded", function () {
       paginationContainer.appendChild(pageLink);
     }
   }
+   function handlePaginationClick(pageNumber) {
+    currentPage = pageNumber;
+    fetchProducts();
+  }
+
+  function fetchProducts() {
+    // No need to fetch products again; use the global allProducts array
+    const productsToDisplay = filterProducts(allProducts);
+
+    // Display the filtered products
+    displayProducts(productsToDisplay);
+
+    // Render pagination based on the total number of products
+    renderPagination(productsToDisplay.length);
+  }
+
