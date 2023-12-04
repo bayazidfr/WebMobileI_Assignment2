@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <p>Stock: ${product.stock}</p>
     <p>Rating: ${product.rating}</p>
     <p>Brand: ${product.brand}</p>
-    <!-- Add more details as needed -->
   `;
 
     const galleryContainer = document.querySelector(".modal-gallery");
