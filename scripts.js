@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fetchProductsData();
 
   function fetchProductsData() {
-    fetch("https://dummyjson.com/products")
+    fetch("https://dummyjson.com/products?limit=0&skip=0")
       .then(response => response.json())
       .then(data => {
         allProducts = data.products;
