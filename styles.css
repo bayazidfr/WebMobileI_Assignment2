@@ -3,8 +3,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(0, 92, 108);
-  ;
-  /* Light gray background similar to Amazon */
 }
 
 .container {
@@ -12,10 +10,8 @@ body {
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
-  /* White background for the main container */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  /* Slight border radius for a modern look */
 }
 
 .search-filter {
@@ -30,13 +26,11 @@ body {
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ddd;
-  /* Light gray border */
   border-radius: 4px;
   flex: 1;
   margin-right: 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .product-container {
   display: flex;
@@ -47,7 +41,6 @@ body {
 .product-card {
   flex: 0 0 calc(25% - 20px);
   border: 1px solid #ddd;
-  /* Light gray border */
   margin: 10px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
@@ -67,7 +60,6 @@ body {
   height: 150px;
   object-fit: cover;
   border-bottom: 1px solid #ddd;
-  /* Light gray border */
   border-radius: 4px 4px 0 0;
 }
 
@@ -79,14 +71,12 @@ body {
   margin: 0;
   font-size: 16px;
   color: #333;
-  /* Dark gray text color */
 }
 
 .product-details p {
   margin: 5px 0;
   font-size: 14px;
   color: #777;
-  /* Light gray text color */
 }
 
 .pagination {
@@ -101,7 +91,6 @@ body {
   text-decoration: none;
   color: #ffffff;
   background-color: rgb(0, 113, 133);
-  /* Amazon's blue-green color */
   border-radius: 4px;
   transition: background-color 0.2s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -109,43 +98,60 @@ body {
 
 .pagination a:hover {
   background-color: rgb(0, 92, 108);
-  /* Slightly darker blue-green on hover */
 }
 
 .pagination a.active {
   background-color: rgb(0, 92, 108);
-  /* Slightly darker blue-green for the active page */
 }
 
-.modal {
+#productModal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 900px;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 600px;
+  overflow-y: auto;
 }
 
-.modal-content {
-  background-color: #ffffff;
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-  overflow-y: auto;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.modal-gallery {
+  width: 70%;
+  float: left;
+  transition: width 0.3s ease;
+}
+
+.modal-thumbnail-container {
+  width: 30%;
+  float: left;
+  text-align: center;
+  transition: width 0.3s ease;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .modal-thumbnail {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid #ddd;
-  /* Light gray border */
-  border-radius: 4px 4px 0 0;
-  margin-bottom: 15px;
+  height: auto;
+  max-height: 120px;
+  margin: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.modal-thumbnail:hover,
+.modal-thumbnail:focus {
+  transform: scale(1.1);
 }
