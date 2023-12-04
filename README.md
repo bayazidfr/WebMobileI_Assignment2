@@ -1,7 +1,7 @@
 # Product Listing
 
 This web application allows users to browse and search for various products. The project is built using HTML, CSS, and JavaScript.
-[GitHub Page](https://bayazidfr.github.io/WebMobileI_Assignment2/){:target="_blank"}
+[GitHub Page](https://bayazidfr.github.io/WebMobileI_Assignment2/)
 
 
 ## Table of Contents
