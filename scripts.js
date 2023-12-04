@@ -7,25 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalContent = document.getElementById("modalContent");
   const itemsPerPage = 10;
   let currentPage = 1;
-  let allProducts = []; // Store all products globally
+  let allProducts = [];
 
-  // Fetch data from the API
-  fetch("https://dummyjson.com/products")
-    .then(response => response.json())
-    .then(data => {
-      // Store all products globally
-      allProducts = data.products;
+  fetchProductsData();
 
-      // Display products initially
-      displayProducts(allProducts);
-
-      // Populate category filter options
-      populateCategoryFilter(allProducts);
-
-      // Render pagination
-      renderPagination(allProducts.length);
-    })
-    .catch(error => console.error("Error fetching data:", error));
+  function fetchProductsData() {
+    fetch("https://dummyjson.com/products")
+      .then(response => response.json())
+      .then(data => {
+        allProducts = data.products;
+        displayProducts(allProducts);
+        populateCategoryFilter(allProducts);
+        renderPagination(allProducts.length);
+      })
+      .catch(error => console.error("Error fetching data:", error));
+  }
 
   function displayProducts(products) {
     // Clear the container before adding new products
@@ -68,23 +64,45 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function openProductModal(product) {
-    modalContent.innerHTML = `
-      <h2>${product.title}</h2>
-      <img src="${product.thumbnail}" alt="${product.title}" class="modal-thumbnail">
-      <p>Description: $${product.description}</p>
-      <p>Price: $${product.price}</p>
-      <p>Discount: ${product.discountPercentage}%</p>
-      <p>Category: ${product.category}</p>
-      <p>Stock: ${product.stock}</p>
-      <p>Rating: ${product.rating}</p>
-      <p>Brand: ${product.brand}</p>
-      <!-- Add more details and gallery here as needed -->
-    `;
+    let currentImageIndex = 0;
 
-    productModal.style.display = "flex";
+    modalContent.innerHTML = `
+    <h2>${product.title}</h2>
+    <div class="modal-gallery">
+      <img src="${product.images[currentImageIndex]}" alt="${product.title}" class="gallery-image">
+    </div>
+    <div class="modal-thumbnail-container">
+      <img src="${product.thumbnail}" alt="${product.title}" class="modal-thumbnail">
+    </div>
+    <p>Description: $${product.description}</p>
+    <p>Price: $${product.price}</p>
+    <p>Discount: ${product.discountPercentage}%</p>
+    <p>Category: ${product.category}</p>
+    <p>Stock: ${product.stock}</p>
+    <p>Rating: ${product.rating}</p>
+    <p>Brand: ${product.brand}</p>
+    <!-- Add more details as needed -->
+  `;
+
+    const galleryContainer = document.querySelector(".modal-gallery");
+    const thumbnailContainer = document.querySelector(".modal-thumbnail-container");
+
+    // Add event listeners for thumbnail clicks
+    thumbnailContainer.addEventListener("click", () => {
+      currentImageIndex = (currentImageIndex + 1) % product.images.length;
+      updateGalleryImage();
+    });
 
     document.addEventListener("click", closeModalOutsideClick);
+
+    function updateGalleryImage() {
+      const currentImage = product.images[currentImageIndex];
+      galleryContainer.innerHTML = `<img src="${currentImage}" alt="${product.title}" class="gallery-image">`;
+    }
+
+    productModal.style.display = "flex";
   }
+
 
   function closeModalOutsideClick(event) {
     // Check if the clicked element is outside the modal
